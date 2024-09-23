@@ -8,8 +8,13 @@ let dificultad: number;
 const pedirCantParticipantes = (): number => rs.questionInt(`Ingrese la cantidad de participantes: `);
 
 const pedirPuntaje = (tipo: String, participante: number): number => {
-    return rs.questionInt(`Ingrese el puntaje para ${tipo} de la torta del participante numero ${participante}: \n`);
+    let puntaje: number = 0;
+    while(puntaje < 1 || puntaje > 5) {
+        puntaje = rs.questionInt(`Ingrese el puntaje entre 1 y 5 para ${tipo} de la torta del participante numero ${participante}: \n`);
+    }
+    return puntaje;
 } 
+
 
 const calcularPuntaje = (sabor: number, presentacion: number, dificultad: number): number => {
     return sabor + presentacion + dificultad;
