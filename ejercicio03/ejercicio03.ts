@@ -12,12 +12,12 @@ function getSearchTerm(): string {
     let term: string = "";
 
     while(term === "") {
-        term = rs.question(`Enter a term to look for: `).trim();
+        term = rs.question(`Enter a term to search for: `);
         if(term == "") {
             console.log(`The saerch term cannot be empty, try again...`)
         }
     }
-    return term;
+    return term.toLowerCase().trim();
 }
 
 //devuelve true si searchTerm se encuentra en fullText
@@ -26,7 +26,7 @@ function isTextInPara(fullText: string, searchTerm: string): boolean {
 }
 
 // Devuelve el texto convertido en array de palabras y sin los signos de puntacion usando split + la regex "/\W+/" 
-function textToArray(text: string) {
+function textToArray(text: string): string[] {
     return text.toLowerCase().split(/\W+/);
 }
 
@@ -45,9 +45,8 @@ function howManyTextInPara(fullText: string, searchTerm: string): void {
         }
     })
 
-    console.log(`The searched term ${searchTerm} was found "${wordCount}" times in the text.`);
+    console.log(`The searched term "${searchTerm}" was found ${wordCount} times in the text.`);
 }
 
 const searchTerm: string = getSearchTerm();
-
 howManyTextInPara(paragraph, searchTerm);
