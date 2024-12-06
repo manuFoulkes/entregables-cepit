@@ -14,7 +14,7 @@ const saveTask = () => {
     }
 
     idTask++;
-    const task = {idTask, taskText};
+    const task = { idTask, taskText };
     tasks.push(task);
     taskInput.value = "";
 }
@@ -26,7 +26,7 @@ const showTasks = () => {
         taskList.innerHTML +=
             `<li>
                 ${task.taskText}
-                <button data-id="${task.idTask}" class="complete-btn">Complete</button>
+                <button data-id="${task.idTask}" class="complete-btn">Finish Task</button>
                 <button data-id="${task.idTask}" class="delete-btn">Delete</button> 
             </li>`;
     });
@@ -48,12 +48,12 @@ const completeTask = (e) => {
 }
 
 taskList.addEventListener("click", (e) => {
-    if(e.target.tagName === "BUTTON" && e.target.classList.contains("delete-btn")) {
-        deleteTask(e);
-    } 
-
-    if(e.target.tagName === "BUTTON" && e.target.classList.contains("complete-btn")) {
-        completeTask(e);
+    if (e.target.tagName === "BUTTON") {
+        if (e.target.classList.contains("delete-btn")) {
+            deleteTask(e);
+        } else if (e.target.classList.contains("complete-btn")) {
+            completeTask(e);
+        }
     }
 });
 
